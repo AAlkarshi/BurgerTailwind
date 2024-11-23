@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="w-full h-full">
 <head>
 	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script src="https://cdn.tailwindcss.com"></script>
     <link href="input.css" rel="stylesheet" />
     <link href="public\style.css" rel="stylesheet" />
@@ -9,27 +10,52 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
-	    <title> Projet Burger avec Tailwind CSS </title>
+	
+    <title> Projet Burger avec Tailwind CSS </title>
 </head>
-<body>
-	<nav class="bg-cover bg-center p-5  w-full flex " 
-         style="background-image:url('public/images/background-slate.jpg');"> 
-        
-        <div class="container mx-auto flex items-center justify-between">
-            <div class="w-60">
-                <a>
-                    <img src="public/images/logo.png" class="ml-2">
-                </a>
-            </div>
-        </div> 
+<body class="w-full h-full m-0 p-0">
+	<!-- Navigation -->
+<nav class="bg-cover bg-center p-5 w-full" style="background-image:url('public/images/background-slate.jpg');">
+    <div class="container mx-auto flex items-center justify-between">
+        <!-- Logo -->
+        <div class="w-60">
+            <a href="#">
+                <img src="public/images/logo.png" alt="Logo" class="ml-2">
+            </a>
+        </div>
 
-        
-        <ul class="text-lg uppercase font-bold flex text-white space-x-2 items-center ">
-            <li> Menus </li>
-            <li> Restaurant </li>
-            <li> Contact </li>
+        <!-- Menu Items (Desktop) -->
+        <ul class="hidden sm:flex text-sm uppercase font-bold text-white space-x-4">
+            <li><a href="#">Menus</a></li>
+            <li><a href="#">Restaurant</a></li>
+            <li><a href="#">Contact</a></li>
         </ul>
-    </nav>
+
+        <!-- BOUTON Hamburger -->
+        <button id="hamburger-btn" 
+                class="block sm:hidden text-white text-2xl focus:outline-none">
+            ☰
+        </button>
+    </div>
+
+    <div id="mobile-menu" class="hidden flex flex-col bg-[#FBB217] text-white uppercase font-bold text-sm p-5 space-y-3">
+        <a href="#">Menus</a>
+        <a href="#">Restaurant</a>
+        <a href="#">Contact</a>
+    </div>
+</nav>
+
+    <!-- JavaScript -->
+    <script>
+       const hamburgerBtn = document.getElementById('hamburger-btn');
+       const mobileMenu = document.getElementById('mobile-menu');
+
+       hamburgerBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden'); 
+});
+
+    </script>
+
 
     <section class="w-full bg-cover bg-center" style="background-image:url('public/images/background-slate.jpg');">
     <div class="container mx-auto flex h-96 justify-center">
@@ -53,7 +79,7 @@
                 alt="Rapido Burger">
         </div>
     </div>
-</section>
+    </section>
 
 
 
@@ -63,78 +89,103 @@
         Nos suggestions 
     </h3>
 
-<div class="flex flex-row ">
+
+
+
+
+<div class="flex flex-wrap justify-center space-x-5 
+            sm:flex-col sm:space-y-5 sm:space-x-0 
+            lg:flex-row lg:space-x-5">
+
+
+
+    <div class="flex flex-wrap justify-center lg:justify-between gap-5">
 
     <!-- CLASSIC BURGER -->
-    <div class="container mx-auto lg:flex lg:space-x-10 flex items-center  justify-center">
-            
-        <div class="lg:w-1/3 text-center">
-            <img src="public\images\classic-burger.jpg" class="content-center">
-                <h5 class="bg-red-500 p-3 rounded-lg w-[200px] text-white inline-block px-3  py-2  mb-5"> Classic Burger </h5>
-
-                <p class="text-justify"> Le Classic Burger allie simplicité et saveur :
-                 un pain brioché moelleux, un steak juteux, du cheddar fondant, de la laitue croquante et une sauce maison savoureuse. <br>
-                Une icône intemporelle pour les amateurs de burgers.</p>
-                
-                <p class="font-lato text-4xl text-[#E7272D] text-center font-bold py-5">
-                    6,90 € 
-                </p>
-        </div>
-     
-
+    <div class="text-center flex-1 min-w-[300px] max-w-[400px]">
+        <img src="public/images/classic-burger.jpg" class="mx-auto">
+        <h5 class="bg-red-500 p-3 rounded-lg text-white inline-block mb-5">Classic Burger</h5>
+        <p class="text-justify">Le Classic Burger allie simplicité et saveur : un pain brioché moelleux, un steak juteux, du cheddar fondant, de la laitue croquante et une sauce maison savoureuse. Une icône intemporelle pour les amateurs de burgers.</p>
+        <p class="font-lato text-4xl text-[#E7272D] text-center font-bold py-5">6,90 €</p>
+    </div>
 
     <!-- SUPREME BURGER -->
-    <div class="text-center  lg:w-1/3">
-        <img src="public\images\supreme-burger.jpg" class="mx-auto">
-                <h5 class="bg-red-500 p-3 rounded-lg w-[200px] text-white inline-block px-3  py-2  mb-5"> 
-                    Suprême Burger 
-                </h5>
-           
-                <p class="text-justify">
-                Suprême Burger contient un mélange généreux de steak juteux, cheddar fondant, et une sauce crémeuse, le tout dans un pain brioché doré. 
-                Une explosion de saveurs à chaque bouchée.
-                </p>
-                
-                <p class="font-lato font-bold py-5 text-4xl text-[#E7272D] text-center">7,90 €</p>
+    <div class="text-center flex-1 min-w-[300px] max-w-[400px]">
+        <img src="public/images/supreme-burger.jpg" class="mx-auto">
+        <h5 class="bg-red-500 p-3 rounded-lg text-white inline-block mb-5">Suprême Burger</h5>
+        <p class="text-justify">Suprême Burger contient un mélange généreux de steak juteux, cheddar fondant, et une sauce crémeuse, le tout dans un pain brioché doré. Une explosion de saveurs à chaque bouchée.</p>
+        <p class="font-lato text-4xl text-[#E7272D] text-center font-bold py-5">7,90 €</p>
     </div>
-    
 
     <!-- KINGDOM BURGER -->
-    <div class="text-center  lg:w-1/3">
-        <img src="public\images\kingdom-burger.jpg" class="mx-auto">      
-            <h5 class="bg-red-500 p-3 rounded-lg w-[200px] text-white inline-block px-3  py-2  mb-5"> 
-                Kingdom Burger 
-            </h5>
-
-            <p>
-            Kingdom Burger est une création royale avec double steak, fromage, oignons caramélisés, et une sauce BBQ fumée, servi dans un pain moelleux. 
-            Une expérience digne d’un festin.
-            </p>
-                
-            <p class="font-lato text-4xl py-5 text-[#E7272D] text-center font-bold">8,90 €</p>
+    <div class="text-center flex-1 min-w-[300px] max-w-[400px]">
+        <img src="public/images/kingdom-burger.jpg" class="mx-auto">
+        <h5 class="bg-red-500 p-3 rounded-lg text-white inline-block mb-5">Kingdom Burger</h5>
+        <p>Kingdom Burger est une création royale avec double steak, fromage, oignons caramélisés, et une sauce BBQ fumée, servi dans un pain moelleux. Une expérience digne d’un festin.</p>
+        <p class="font-lato text-4xl text-[#E7272D] text-center font-bold py-5">8,90 €</p>
     </div>
-    
-    
-    </div> 
 </div>
+
+
+
+
+
+
+
+    
+</div>
+
+
 </section>
 
 
-<!-- BLOC NEWSLETTER-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <section class="bg-[#FBB217] pb-5">
-    <h3 class="w-full text-red-500 flex flex-row justify-center font-arvo font-bold text-2xl pb-4  pt-4">
+    <h3 class="w-full text-red-500 flex flex-row justify-center font-arvo font-bold text-2xl pb-4 pt-4">
         Inscrivez-vous à notre newsletter
     </h3>
 
-    <div class="flex flex-row items-center justify-center">
-        <input class="mr-4 pl-1" type="text" id="nom" name="nom" placeholder="Nom" required   />   
-        <input class="ml-4 pl-1" type="text" id="email" name="email" placeholder="Email" required  /> 
+    <div class="flex flex-col sm:flex-row items-center justify-center sm:space-x-4 sm:space-y-0 space-y-4 text-center">
+    <input class="pl-1" type="text" id="nom" name="nom" placeholder="Nom" required />   
+    <input class="pl-1" type="text" id="email" name="email" placeholder="Email" required /> 
 
-        <button class="bg-red-500 ml-4 rounded-lg w-[100px] text-white inline-block px-3  py-2">
-            Inscription
-        </button>
+    <button class="bg-red-500 sm:ml-4 sm:mt-0 mt-2 rounded-lg w-[100px] text-white inline-block px-3 py-2">
+        Inscription
+    </button>
+</div>
 
-    </div>
 </section>
 
 
@@ -283,37 +334,39 @@
 
 
 <!-- FOOTER -->
-<footer class="bg-cover bg-center p-5  w-full flex" 
-         style="background-image:url('public/images/background-slate.jpg');"> 
+<footer class="bg-cover bg-center p-5" style="background-image:url('public/images/background-slate.jpg');"> 
+    <!-- Conteneur principal pour aligner les colonnes -->
+    <div class="flex flex-wrap lg:flex-row md:flex-col md:space-y-5 lg:space-y-0 justify-around items-start">
         
-        <div class="container flex flex-col items-center lg:w-1/3">
-            <div class="w-60">
-                <img src="public/images/logo.png" class="ml-2">
-            </div>
-        </div> 
-
-        <div class="container flex flex-col items-center lg:w-1/3">
-            <div class="w-60">
-                <h3 class="text-[#E7272D] text-2xl"> Informations </h3>
-                <ul class="text-[#FBB217]">
-                    <li>Mentions légales</li>
-                    <li>Conditions de vente</li>
-                    <li>Contact</li>
-                </ul>
-            </div>
-        </div> 
-
-        <div class="text-center">
-        <h3 class="text-2xl text-[#E7272D] mb-4"> Nous suivre </h3>
-        <ul class="text-[#FBB217] flex justify-center space-x-4 text-3xl ">
-            <li> <i class="fa-brands fa-instagram"></i> </li>
-            <li> <i class="fa-brands fa-facebook"></i> </li>
-            <li> <i class="fa-brands fa-youtube"></i> </li>
-            <li> <i class="fa-brands fa-twitter"></i> </li>
-        </ul>
+        <!-- IMAGE LOGO -->
+        <div class="w-full md:w-full lg:w-1/3 flex justify-center lg:justify-start">
+            <img src="public/images/logo.png" class="w-40">
         </div>
 
+        <!-- BLOC INFORMATIONS -->
+        <div class="w-full md:w-full lg:w-1/3 flex flex-col items-center lg:items-start">
+            <h3 class="text-[#E7272D] text-2xl mb-3">Informations</h3>
+            <ul class="text-[#FBB217] space-y-2">
+                <li>Mentions légales</li>
+                <li>Conditions de vente</li>
+                <li>Contact</li>
+            </ul>
+        </div>
+
+        <!-- BLOC NOUS SUIVRE -->
+        <div class="w-full md:w-full lg:w-1/3 flex flex-col items-center">
+            <h3 class="text-2xl text-[#E7272D] mb-3">Nous suivre</h3>
+            <ul class="text-[#FBB217] flex justify-center space-x-4 text-3xl">
+                <li><i class="fa-brands fa-instagram"></i></li>
+                <li><i class="fa-brands fa-facebook"></i></li>
+                <li><i class="fa-brands fa-youtube"></i></li>
+                <li><i class="fa-brands fa-twitter"></i></li>
+            </ul>
+        </div>
+
+    </div>
 </footer>
+
 
 
 
